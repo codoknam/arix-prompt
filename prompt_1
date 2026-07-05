@@ -1,0 +1,93 @@
+Create a complete lightweight AI platform from scratch.
+
+Goal:
+Build an AI-like assistant that is lightweight, fast, easy to maintain, and can be deployed on Render Free.
+
+Requirements:
+
+General
+
+- Use Python.
+- Use FastAPI.
+- Use SQLite.
+- Keep the total project size under 50GB.
+- Optimize for low RAM and CPU usage.
+- The project must be modular and production-ready.
+- Automatically create missing folders and databases.
+- Include comments for important code.
+
+AI
+
+- Use SmolLM2 360M as the local language model.
+- Run the model directly inside the Render server.
+- Load the model only once.
+- Stream responses token-by-token.
+- Optimize inference speed.
+- Support multiple users.
+
+Memory
+
+- Store conversation history.
+- Store long-term user memories.
+- Retrieve relevant memories before generating responses.
+
+Web Search
+
+- Automatically determine if a question requires current information.
+- If current information is needed, search the web using a configurable search API.
+- Summarize search results before generating the final answer.
+- Never search when unnecessary.
+
+Website
+
+- Modern ChatGPT-like interface.
+- Responsive for mobile and desktop.
+- Dark mode.
+- Markdown rendering.
+- Code block support.
+- Multiple conversations.
+- Conversation history.
+- File upload support.
+- Login and registration.
+
+API
+Create an OpenAI-compatible REST API.
+
+Endpoints:
+
+- POST /v1/chat/completions
+- POST /login
+- POST /register
+- GET /history
+- POST /memory
+- GET /memory
+- POST /apikey
+
+API Features
+
+- Generate API keys.
+- Per-user API keys.
+- Rate limiting.
+- Usage statistics.
+- Admin dashboard.
+
+Performance
+
+- Use async programming.
+- Cache repeated requests.
+- Keep RAM usage low.
+- Keep CPU usage low.
+
+Deployment
+
+- Deploy on Render Free.
+- Automatically handle Render sleep/wake behavior.
+- The server should start automatically when the first request arrives.
+- After startup, the AI should answer requests normally.
+- Handle cold starts gracefully.
+
+Project Structure
+Separate frontend, backend, AI engine, database, authentication, search, memory, and API modules.
+
+Output
+Generate the complete source code, setup instructions, Render deployment configuration, dependency list, folder structure, and documentation.
