@@ -1,0 +1,156 @@
+Project Update
+
+Please keep the existing implementation and add the following new features and architectural improvements.
+
+1. Personal Vector Memory
+
+Implement a separate vector memory for every user.
+
+Requirements:
+
+- Each user has an independent vector memory.
+- Never mix memories between different users.
+- Store semantic embeddings of conversations.
+- Before generating every response, retrieve the most relevant memories.
+- Users can view, edit, and delete their own memories.
+
+---
+
+2. Three-Level Memory System
+
+Implement three different memory layers.
+
+Short-Term Memory
+
+- Current conversation only.
+- Used to maintain conversation context.
+
+Long-Term Memory
+
+Store important personal information such as:
+
+- Name
+- Preferences
+- Favorite programming languages
+- Projects
+- Interests
+- User-defined memories
+
+Vector Memory
+
+Store semantic representations of conversations for intelligent retrieval.
+
+---
+
+3. Knowledge Database (Mini Learning System)
+
+Do NOT continuously retrain the language model.
+
+Instead, implement a growing knowledge database.
+
+Workflow:
+
+User Message
+
+↓
+
+AI Response
+
+↓
+
+Evaluate whether useful knowledge exists
+
+↓
+
+Store as candidate knowledge
+
+↓
+
+Assign a confidence score
+
+↓
+
+If confidence is high (or approved by an administrator)
+
+↓
+
+Move into the global knowledge database
+
+↓
+
+Use this knowledge in future conversations.
+
+The AI should improve over time by expanding the knowledge database instead of retraining the model.
+
+---
+
+4. Knowledge Protection
+
+Prevent malicious users from poisoning the knowledge database.
+
+Requirements:
+
+- Confidence scores
+- Duplicate detection
+- Conflict detection
+- Administrator approval for important knowledge
+- Never trust user input automatically
+
+---
+
+5. User Feedback System
+
+Every AI response should support:
+
+👍 Helpful
+
+👎 Not Helpful
+
+Feedback should influence confidence scores inside the knowledge database.
+
+Highly-rated knowledge should be prioritized.
+
+Poorly-rated knowledge should gradually lose priority.
+
+---
+
+6. AI Usage Optimization
+
+Always try cheaper methods before running the language model.
+
+Priority order:
+
+1. Calculator
+2. Built-in functions
+3. User Memory
+4. Vector Memory
+5. Knowledge Database
+6. Web Search
+7. SmolLM2
+
+The language model should only run if the previous systems cannot fully answer the question.
+
+---
+
+7. Configurable AI Models
+
+Make the AI model configurable.
+
+Changing the model should only require editing a configuration file without modifying source code.
+
+---
+
+Final Goal
+
+The assistant should continuously become more useful through:
+
+- Personal memory
+- Vector memory
+- Knowledge database
+- User feedback
+- Intelligent retrieval
+- Web search
+
+instead of continuously retraining the language model.
+
+The system should remain lightweight, efficient, scalable, and fully compatible with Render Free.
