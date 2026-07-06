@@ -1,0 +1,190 @@
+---
+
+8. Multi-Service Architecture for Render Free
+
+Redesign the system architecture to maximize compatibility with Render Free.
+
+The system must be split into independent services.
+
+Main Service
+
+The Main Service should contain only lightweight components.
+
+Responsibilities:
+
+- Website
+- Login
+- Registration
+- User management
+- API key management
+- Usage statistics
+- Billing support (future)
+- Admin dashboard
+- Request routing
+- Rate limiting
+
+This service should consume as little RAM and CPU as possible.
+
+It should never directly execute the language model.
+
+---
+
+AI Service
+
+Create one or more independent AI services.
+
+Responsibilities:
+
+- SmolLM2 inference
+- Memory retrieval
+- Vector memory retrieval
+- Knowledge database retrieval
+- Prompt construction
+- Final response generation
+
+The AI service should expose an internal API used only by the Main Service.
+
+---
+
+Future Expansion
+
+The architecture must allow multiple AI servers.
+
+Example:
+
+AI Server 1
+
+AI Server 2
+
+AI Server 3
+
+...
+
+The Main Service should be able to distribute requests between AI servers.
+
+The routing system must be modular so additional AI servers can be added without modifying existing code.
+
+---
+
+9. AI Load Balancing
+
+Implement a lightweight load balancing system.
+
+Requirements:
+
+- Detect which AI server is available.
+- Distribute users between available AI servers.
+- Prefer servers with the lowest current workload.
+- Skip unavailable servers automatically.
+- Retry another AI server if one fails.
+- Keep the architecture scalable.
+
+The goal is to improve concurrent request handling rather than increasing the size of a single AI model.
+
+---
+
+10. Render Sleep Awareness
+
+Design the architecture specifically for Render Free.
+
+Requirements:
+
+- Assume AI services may enter sleep mode.
+- Handle cold starts gracefully.
+- Show an appropriate loading state while an AI server wakes up.
+- Automatically retry requests after an AI service becomes available.
+- Keep the Main Service responsive even while waiting.
+
+---
+
+11. Smart Request Routing
+
+Before sending a request to an AI server, determine whether AI is actually required.
+
+Examples:
+
+Calculator
+
+↓
+
+Built-in calculation
+
+Current date
+
+↓
+
+System function
+
+Weather
+
+↓
+
+Weather API
+
+Search
+
+↓
+
+Search API
+
+Memory question
+
+↓
+
+Memory retrieval
+
+Knowledge question
+
+↓
+
+Knowledge database
+
+Creative writing
+
+↓
+
+AI Service
+
+Only use the language model when necessary.
+
+---
+
+12. AI Service Scalability
+
+The architecture must support horizontal scaling.
+
+It should be possible to deploy multiple AI services independently.
+
+The Main Service should automatically recognize available AI services from a configuration file or service registry.
+
+Adding or removing AI servers should require no source code modifications.
+
+---
+
+13. Fault Tolerance
+
+If one AI service crashes or becomes unavailable:
+
+- Automatically redirect requests to another available AI service.
+- Log the failure.
+- Continue serving users whenever possible.
+
+The failure of one AI service must not stop the entire platform.
+
+---
+
+Final Architecture Goal
+
+The platform should behave like a professional distributed AI system.
+
+Use lightweight independent services instead of one large server.
+
+Optimize for:
+
+- Render Free compatibility
+- Low RAM usage
+- Low CPU usage
+- Scalability
+- Reliability
+- Fast response time
+- Easy future expansion
